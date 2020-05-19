@@ -14,6 +14,7 @@ public class PuzzleChecker : MonoBehaviour {
     private bool vertical = true;
     private bool side = true;
 
+
     void Start()
     {
         score = 0; ;
@@ -52,6 +53,7 @@ public class PuzzleChecker : MonoBehaviour {
                     Destroy(FieldControl.objectsField[i, j]);
                     score += 1;
                     FieldControl.PuzzleField[i, j] = 0;
+                    FieldControl.none_Field = true; 
                 }
             }
         }

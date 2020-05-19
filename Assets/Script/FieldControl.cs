@@ -18,7 +18,9 @@ public class FieldControl : MonoBehaviour
     private int Value = 0;
     public Canvas canvas;
     static public int[,] PuzzleField = new int[5,5];
-    static public GameObject[,] objectsField = new GameObject[5, 5];    
+    static public GameObject[,] objectsField = new GameObject[5, 5];
+    static public bool none_Field = false;
+
 
     void Start () {
         for(int x = 0; x < 5; x++)
@@ -35,6 +37,18 @@ public class FieldControl : MonoBehaviour
         }
     }
 	void Update () {
+
+        if (none_Field)
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                for (int j = 0; j < 5; j++)
+                {
+                    Debug.Log(PuzzleField[j, i]);
+                }
+            }
+        }
+
         if (Input.GetKeyDown(KeyCode.M))
         {
             for(int i = 0; i < 5; i++)
