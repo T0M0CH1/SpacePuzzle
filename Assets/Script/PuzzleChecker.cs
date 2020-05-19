@@ -58,7 +58,7 @@ public class PuzzleChecker : MonoBehaviour {
     }
 
 
-    private int checkColor(int Posx, int Posy)
+    public int checkColor(int Posx, int Posy)
     {
         int result = 0;
         int mine = FieldControl.PuzzleField[Posx, Posy];
