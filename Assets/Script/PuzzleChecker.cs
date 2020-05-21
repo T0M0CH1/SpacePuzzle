@@ -53,7 +53,6 @@ public class PuzzleChecker : MonoBehaviour {
                     Destroy(FieldControl.objectsField[i, j]);
                     score += 1;
                     FieldControl.PuzzleField[i, j] = 0;
-                    FieldControl.none_Field = true; 
                 }
             }
         }
@@ -96,6 +95,29 @@ public class PuzzleChecker : MonoBehaviour {
             vertical = false;
         }
         return result + 1;
+    }
+
+
+    /// <summary>
+    /// ピーズがない所を検索
+    /// </summary>
+    /// <param name="PuzzleField">検索の対象</param>
+    /// <returns>ピーズがない数</returns>
+    public int FindNullField(int[,] PuzzleField)
+    {
+        int NullCount = 0;
+        for (int x = 0; x < 5; x++)
+        {
+            for (int y = 0; y < 5; y++)
+            {
+                if (PuzzleField[x, y] == 0)
+                {
+                    NullCount++;
+                }
+            }
+        }
+        return NullCount;
+        //여기서 부터 작업
     }
 
     private bool IsSameColor(int myX,int myY,int targetX,int targetY)

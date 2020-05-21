@@ -25,7 +25,9 @@ public class Piece : MonoBehaviour
 
         // フラグを初期化
         deleteFlag = false;
+
     }
+
 
     //-------------------------------------------------------
     // Public Function
@@ -79,4 +81,19 @@ public class Piece : MonoBehaviour
                 break;
         }
     }
+    //--------------------------------------------------------------------------
+    /// <summary>
+    /// ピーズを下に移動する
+    /// </summary>
+    /// <param name="DownFlag"> 下にピーズの有無を確認</param>
+    private void ShifttDown(bool DownFlag)
+    {
+        if(DownFlag)
+        {
+            var Object_Pos = GetComponent<RectTransform>().anchoredPosition;
+          transform.localPosition = new Vector2(Object_Pos.x, Object_Pos.y - 100);
+        }
+     
+    }
+    //--------------------------------------------------------------------------
 }
