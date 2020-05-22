@@ -66,12 +66,17 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // 盤面上のかけている部分にピースを補充する
     private void FillPiece()
     {
-       puzzleChecker.FindNullField(FieldControl.PuzzleField);
+        //puzzleChecker.FindNullField(FieldControl.PuzzleField);
+        //補充用scriptをここに記入
 
-       // fieldControl.StartCoroutine("FindNullField");
-       //補充用scriptをここに記入
+        while (puzzleChecker.Bottom_check())
+        {
+            puzzleChecker.All_Objectt_ShiftDown();
+            //イメージ更新が処理が必要
+        }
+        fieldControl.AddPiece();
+
     }
 }

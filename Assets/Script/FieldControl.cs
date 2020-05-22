@@ -17,7 +17,7 @@ public class FieldControl : MonoBehaviour
         GreenSquare = 6,
     }
     private int Value = 0;
-    private bool IsShift = false;
+    //private bool IsShift = false;
 
     public Canvas canvas;
     static public int[,] PuzzleField = new int[5, 5];
@@ -104,90 +104,24 @@ public class FieldControl : MonoBehaviour
         }
 
         return Vector2.zero;
-    }
-
-    ////------------------------------------------------イゴンヒ　
-    ////ピースの存在有無をチェックしてピースを下に移動
-    //public IEnumerator FindNullField()
-    //{
-    //    for(int x = 0; x < 5; x++)
-    //    {
-    //        for(int y = 0; y < 5; y++)
-    //        {
-    //            if(PuzzleField[x, y] == 0)
-    //            {
-    //                yield return StartCoroutine(ShiftDown(x, y));
-    //                break;
-    //            }
-    //        }
-    //    }
-    //}
-
-    ////------------------------------------------------イゴンヒ
-    ////ピースを下に移動する処理（未完成）
-    //public IEnumerator ShiftDown(int x, int yStart, float shiftDelay = .03f)
-    //{
-    //    IsShift = true;
-    //    int nullCount = 0;
-    //    for(int y = yStart; y < 5; y++)
-    //    { 
-    //        if(PuzzleField[x, y] == 0)
-    //        {
-    //            nullCount++;
-    //        }
-    //    }
-
-
-    //    for (int i = 0; i < nullCount; i++)
-    //    {
-    //        yield return new WaitForSeconds(shiftDelay);
-
-    //        for (int y = yStart; y < 5; y++)
-    //        {
-    //            if (PuzzleField[x,y] == 0)
-    //            {
-    //                PuzzleField[x, y] = PuzzleField[x, y +1];
-    //                new Vector2(100 * x - 200, 200 - 100 * y);
-    //            }
-    //        }
-    //    }
-    //    IsShift = false;
-
-    //}
-    
-    /// <summary>
-    /// ピーズがない所の数
-    /// </summary>
-    /// <returns></returns>
-    public int FindNullField()
-    {
-        int NullCount = 0;
-        for(int x = 0; x < 5; x++)
-        {
-            for(int y = 0; y < 5; y++)
-            {
-                if (PuzzleField[x,y] == 0)
-                {
-                    NullCount++;
-                }
-            }
-        }
-        return NullCount;
-    }
+    }   
 
     //最上段からピースを追加　イゴンヒ
     public void AddPiece()
     { 
         for (int x = 0; x < 5; x++)
-        {
-            if (PuzzleField[x, 0] == 0)
+        {    
+            for(int y = 0; y < 4; y++)
             {
-                Value = UnityEngine.Random.Range(1, 7);
-                var panel = Resources.Load<GameObject>(Enum.GetName(typeof(PuzzleImage), Value));
-                var p = Instantiate<GameObject>(panel);
-                p.transform.SetParent(canvas.transform, false);
-                p.transform.localPosition = new Vector2(100 * x - 200, 200);
-                PuzzleField[x, 0] = Value;
+                if (PuzzleField[x, y] == 0)
+                {
+                    Value = UnityEngine.Random.Range(1, 7);
+                    var panel = Resources.Load<GameObject>(Enum.GetName(typeof(PuzzleImage), Value));
+                    var p = Instantiate<GameObject>(panel);
+                    p.transform.SetParent(canvas.transform, false);
+                    p.transform.localPosition = new Vector2(100 * x - 200, 200);
+                    PuzzleField[x, y] = Value;
+                }
             }
         }
     }
@@ -195,3 +129,52 @@ public class FieldControl : MonoBehaviour
     //---------------------------------------------------
 
 }
+
+////------------------------------------------------イゴンヒ　
+////ピースの存在有無をチェックしてピースを下に移動
+//public IEnumerator FindNullField()
+//{
+//    for(int x = 0; x < 5; x++)
+//    {
+//        for(int y = 0; y < 5; y++)
+//        {
+//            if(PuzzleField[x, y] == 0)
+//            {
+//                yield return StartCoroutine(ShiftDown(x, y));
+//                break;
+//            }
+//        }
+//    }
+//}
+
+////------------------------------------------------イゴンヒ
+////ピースを下に移動する処理（未完成）
+//public IEnumerator ShiftDown(int x, int yStart, float shiftDelay = .03f)
+//{
+//    IsShift = true;
+//    int nullCount = 0;
+//    for(int y = yStart; y < 5; y++)
+//    { 
+//        if(PuzzleField[x, y] == 0)
+//        {
+//            nullCount++;
+//        }
+//    }
+
+
+//    for (int i = 0; i < nullCount; i++)
+//    {
+//        yield return new WaitForSeconds(shiftDelay);
+
+//        for (int y = yStart; y < 5; y++)
+//        {
+//            if (PuzzleField[x,y] == 0)
+//            {
+//                PuzzleField[x, y] = PuzzleField[x, y +1];
+//                new Vector2(100 * x - 200, 200 - 100 * y);
+//            }
+//        }
+//    }
+//    IsShift = false;
+
+//}

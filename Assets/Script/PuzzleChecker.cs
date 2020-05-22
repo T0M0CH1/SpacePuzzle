@@ -97,31 +97,65 @@ public class PuzzleChecker : MonoBehaviour {
         return result + 1;
     }
 
-
-    /// <summary>
-    /// ピーズがない所を検索
-    /// </summary>
-    /// <param name="PuzzleField">検索の対象</param>
-    /// <returns>ピーズがない数</returns>
-    public int FindNullField(int[,] PuzzleField)
+    private void ShiftDown(int x, int y)
     {
-        int NullCount = 0;
+        if (FieldControl.PuzzleField[x, y + 1] == 0)
+        {
+            FieldControl.PuzzleField[x, y + 1] = FieldControl.PuzzleField[x, y];
+            FieldControl.PuzzleField[x, y] = 0;
+        }
+    } 
+
+    public void All_Objectt_ShiftDown()
+    {
         for (int x = 0; x < 5; x++)
         {
-            for (int y = 0; y < 5; y++)
+            for (int y = 0; y < 4; y++)
             {
-                if (PuzzleField[x, y] == 0)
-                {
-                    NullCount++;
-                }
+                ShiftDown(x,y);
             }
         }
-        return NullCount;
-        //여기서 부터 작업
     }
+
+    public bool Bottom_check()
+    {
+        for (int x = 0; x < 5; x++)
+        {
+            if (FieldControl.PuzzleField[x, 4] == 0)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+  
 
     private bool IsSameColor(int myX,int myY,int targetX,int targetY)
     {
         return FieldControl.PuzzleField[myX, myY] == FieldControl.PuzzleField[targetX, targetY] && !isCheck[targetX, targetY] && FieldControl.objectsField[targetX, targetY] != null;
     }
+
 }
+
+///// <summary>
+///// ピーズがない所を検索
+///// </summary>
+///// <param name="PuzzleField">検索の対象</param>
+///// <returns>ピーズがない数</returns>
+//public int FindNullField(int[,] PuzzleField)
+//{
+//    int NullCount = 0;
+//    for (int x = 0; x < 5; x++)
+//    {
+//        for (int y = 0; y < 5; y++)
+//        {
+//            if (PuzzleField[x, y] == 0)
+//            {
+//                NullCount++;
+//            }
+//        }
+//    }
+//    return NullCount;
+//}
