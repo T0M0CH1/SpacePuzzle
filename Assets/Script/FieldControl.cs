@@ -106,7 +106,7 @@ public class FieldControl : MonoBehaviour
         return Vector2.zero;
     }   
 
-    //最上段からピースを追加　イゴンヒ
+    //空いた所にピースを追加　イゴンヒ
     public void AddPiece()
     { 
         for (int x = 0; x < 5; x++)

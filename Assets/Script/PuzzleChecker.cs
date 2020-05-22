@@ -97,15 +97,18 @@ public class PuzzleChecker : MonoBehaviour {
         return result + 1;
     }
 
+    //下のコマにピースを移動　イゴンヒ
     private void ShiftDown(int x, int y)
     {
-        if (FieldControl.PuzzleField[x, y + 1] == 0)
+        if (FieldControl.PuzzleField[x, y + 1] == 0)//下にピースがないなら
         {
             FieldControl.PuzzleField[x, y + 1] = FieldControl.PuzzleField[x, y];
             FieldControl.PuzzleField[x, y] = 0;
+            //オブジェクト移動更新が必要。
         }
-    } 
+    }
 
+    //イゴンヒ
     public void All_Objectt_ShiftDown()
     {
         for (int x = 0; x < 5; x++)
@@ -117,6 +120,7 @@ public class PuzzleChecker : MonoBehaviour {
         }
     }
 
+    //イゴンヒ
     public bool Bottom_check()
     {
         for (int x = 0; x < 5; x++)

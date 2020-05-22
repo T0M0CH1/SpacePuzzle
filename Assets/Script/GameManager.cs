@@ -66,6 +66,8 @@ public class GameManager : MonoBehaviour
         }
     }
 
+
+    //イゴンヒ
     private void FillPiece()
     {
         //puzzleChecker.FindNullField(FieldControl.PuzzleField);
